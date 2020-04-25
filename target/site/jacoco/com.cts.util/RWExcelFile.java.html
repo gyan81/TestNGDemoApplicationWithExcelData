@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RWExcelFile.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">TestNGDemoApplicationWithExcelData</a> &gt; <a href="index.source.html" class="el_package">com.cts.util</a> &gt; <span class="el_source">RWExcelFile.java</span></div><h1>RWExcelFile.java</h1><pre class="source lang-java linenums">package com.cts.util;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.web.client.RestTemplate;
+
+import com.cts.model.User;
+
+public class RWExcelFile {
+
+	
+<span class="fc" id="L28">	private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);</span>
+	private int rownum;
+	private int cellnum;
+	File file;
+
+<span class="fc" id="L33">	RWExcelFile() {</span>
+<span class="fc" id="L34">		rownum = 0;</span>
+<span class="fc" id="L35">		cellnum = 0;</span>
+<span class="fc" id="L36">		file = new File(&quot;./src/main/resources/excel/login.xlsx&quot;);</span>
+<span class="fc" id="L37">	}</span>
+
+	public void readExcel(String inputFilePath) {
+<span class="fc" id="L40">		RestTemplate restTemplate = new RestTemplate();</span>
+		// TechDTO techDto = new TechDTO();
+		try {
+
+			/*
+			 * FileInputStream excelFile = new FileInputStream(new
+			 * File(inputFilePath)); Workbook workbook = new
+			 * XSSFWorkbook(excelFile);
+			 */
+<span class="fc" id="L49">			Workbook workbook = new XSSFWorkbook(</span>
+<span class="fc" id="L50">					Files.newInputStream(Paths.get(&quot;./src/main/resources/excel/students.xlsx&quot;)));</span>
+<span class="fc" id="L51">			Sheet datatypeSheet = workbook.getSheetAt(0);</span>
+<span class="fc" id="L52">			Iterator&lt;Row&gt; iterator = datatypeSheet.iterator();</span>
+
+<span class="fc bfc" id="L54" title="All 2 branches covered.">			while (iterator.hasNext()) {</span>
+
+<span class="fc" id="L56">				Row currentRow = iterator.next();</span>
+<span class="fc" id="L57">				Iterator&lt;Cell&gt; cellIterator = currentRow.iterator();</span>
+
+<span class="fc bfc" id="L59" title="All 2 branches covered.">				while (cellIterator.hasNext()) {</span>
+
+<span class="fc" id="L61">					Cell currentCell = cellIterator.next();</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">					if (currentCell.getCellTypeEnum() == CellType.STRING) {</span>
+<span class="fc" id="L63">						LOGGER.info(currentCell.getStringCellValue() + &quot;--&quot;);</span>
+<span class="fc" id="L64">						int columnIndex = currentCell.getColumnIndex();</span>
+<span class="fc" id="L65">						int rowIndex = currentCell.getRowIndex();</span>
+<span class="pc bpc" id="L66" title="1 of 2 branches missed.">						if (rowIndex &gt; 0) {</span>
+<span class="fc bfc" id="L67" title="All 2 branches covered.">							if (columnIndex == 1) {</span>
+							}
+<span class="fc bfc" id="L69" title="All 2 branches covered.">							if (columnIndex == 2) {</span>
+<span class="fc" id="L70">								String input = currentCell.getStringCellValue();</span>
+<span class="pc bpc" id="L71" title="1 of 2 branches missed.">								if (input.endsWith(&quot;.json&quot;)) {</span>
+								}
+							}
+<span class="pc bpc" id="L74" title="1 of 2 branches missed.">							if (columnIndex == 3) {</span>
+							}
+<span class="pc bpc" id="L76" title="1 of 2 branches missed.">							if (columnIndex == 4) {</span>
+							
+							}
+						}
+<span class="fc bfc" id="L80" title="All 2 branches covered.">					} else if (currentCell.getCellTypeEnum() == CellType.NUMERIC) {</span>
+<span class="fc" id="L81">						LOGGER.log(Level.INFO, currentCell.getNumericCellValue() + &quot;--&quot;);</span>
+					}
+<span class="fc" id="L83">				}</span>
+<span class="fc" id="L84">			}</span>
+<span class="nc" id="L85">		} catch (FileNotFoundException e) {</span>
+<span class="nc" id="L86">			LOGGER.log(Level.WARNING, &quot;FileNotFoundException:&quot; + e.getLocalizedMessage());</span>
+<span class="nc" id="L87">		} catch (IOException e) {</span>
+<span class="nc" id="L88">			LOGGER.log(Level.WARNING, &quot;FileNotFoundException:&quot; + e.getLocalizedMessage());</span>
+<span class="pc" id="L89">		}</span>
+
+<span class="fc" id="L91">	}</span>
+
+	public String writeExcel(User userDto) {
+<span class="fc" id="L94">		XSSFWorkbook workbook = new XSSFWorkbook();</span>
+
+<span class="fc" id="L96">		XSSFSheet sheet = workbook.createSheet(&quot;User Details&quot;);</span>
+
+<span class="fc" id="L98">		int rownum = 0;</span>
+
+<span class="fc" id="L100">		Row row = sheet.createRow(rownum++);</span>
+
+<span class="fc" id="L102">		Cell cell = row.createCell(cellnum++);</span>
+
+<span class="fc" id="L104">		cell.setCellValue(userDto.getUserId());</span>
+
+<span class="fc" id="L106">		Cell cell2 = row.createCell(cellnum++);</span>
+<span class="fc" id="L107">		cell2.setCellValue(userDto.getPassword());</span>
+
+<span class="fc" id="L109">		Cell cell3 = row.createCell(cellnum++);</span>
+<span class="fc" id="L110">		cell3.setCellValue(userDto.getFirstName());</span>
+
+<span class="fc" id="L112">		Cell cell4 = row.createCell(cellnum++);</span>
+<span class="fc" id="L113">		cell4.setCellValue(userDto.getLastName());</span>
+		try {
+			/*
+			 * FileOutputStream out = new FileOutputStream(file);
+			 * workbook.write(out); out.close();
+			 */
+<span class="fc" id="L119">			workbook = new XSSFWorkbook(Files.newInputStream(Paths.get(&quot;./src/main/resources/excel/students.xlsx&quot;)));</span>
+<span class="fc" id="L120">			workbook.close();</span>
+<span class="fc" id="L121">			return &quot;User Registered Successfully&quot;;</span>
+<span class="nc" id="L122">		} catch (Exception e) {</span>
+<span class="nc" id="L123">			e.printStackTrace();</span>
+<span class="nc" id="L124">			return &quot;Internal Server Error&quot;;</span>
+		}
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

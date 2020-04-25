@@ -1,0 +1,194 @@
+<html>
+<head>
+<title>TestNG:  Surefire test</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>Surefire test</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>23/0/0</td>
+</tr><tr>
+<td>Started on:</td><td>Thu Apr 23 14:06:40 IST 2020</td>
+</tr>
+<tr><td>Total time:</td><td>19 seconds (19310 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td></td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='com.cts.ShoppingcartApplicationTest.contextLoads()'><b>contextLoads</b><br>Test class: com.cts.ShoppingcartApplicationTest</td>
+<td></td>
+<td>1</td>
+<td>contextLoads(com.cts.ShoppingcartApplicationTest)</td></tr>
+<tr>
+<td title='com.cts.controller.AuthControllerTest.createUserTest()'><b>createUserTest</b><br>Test class: com.cts.controller.AuthControllerTest</td>
+<td></td>
+<td>9</td>
+<td>createUserTest(com.cts.controller.AuthControllerTest)</td></tr>
+<tr>
+<td title='com.cts.repository.AuthRepositoryTest.createUserTest()'><b>createUserTest</b><br>Test class: com.cts.repository.AuthRepositoryTest</td>
+<td></td>
+<td>0</td>
+<td>createUserTest(com.cts.repository.AuthRepositoryTest)</td></tr>
+<tr>
+<td title='com.cts.service.AuthServiceTest.createUserTest()'><b>createUserTest</b><br>Test class: com.cts.service.AuthServiceTest</td>
+<td></td>
+<td>0</td>
+<td>createUserTest(com.cts.service.AuthServiceTest)</td></tr>
+<tr>
+<td title='com.cts.exception.ErrorResponseTest.errorResponsetest()'><b>errorResponsetest</b><br>Test class: com.cts.exception.ErrorResponseTest</td>
+<td></td>
+<td>0</td>
+<td>errorResponsetest(com.cts.exception.ErrorResponseTest)</td></tr>
+<tr>
+<td title='com.cts.exception.CustomExceptionHandlerTest.handleAllExceptionTest()'><b>handleAllExceptionTest</b><br>Test class: com.cts.exception.CustomExceptionHandlerTest</td>
+<td></td>
+<td>0</td>
+<td>handleAllExceptionTest(com.cts.exception.CustomExceptionHandlerTest)</td></tr>
+<tr>
+<td title='com.cts.exception.CustomExceptionHandlerTest.handleInternalServerExceptionTest()'><b>handleInternalServerExceptionTest</b><br>Test class: com.cts.exception.CustomExceptionHandlerTest</td>
+<td></td>
+<td>0</td>
+<td>handleInternalServerExceptionTest(com.cts.exception.CustomExceptionHandlerTest)</td></tr>
+<tr>
+<td title='com.cts.exception.CustomExceptionHandlerTest.handleRecordNotFoundExceptionTest()'><b>handleRecordNotFoundExceptionTest</b><br>Test class: com.cts.exception.CustomExceptionHandlerTest</td>
+<td></td>
+<td>0</td>
+<td>handleRecordNotFoundExceptionTest(com.cts.exception.CustomExceptionHandlerTest)</td></tr>
+<tr>
+<td title='com.cts.controller.AuthControllerTest.loginTest()'><b>loginTest</b><br>Test class: com.cts.controller.AuthControllerTest</td>
+<td></td>
+<td>9</td>
+<td>loginTest(com.cts.controller.AuthControllerTest)</td></tr>
+<tr>
+<td title='com.cts.repository.AuthRepositoryTest.loginTest()'><b>loginTest</b><br>Test class: com.cts.repository.AuthRepositoryTest</td>
+<td></td>
+<td>0</td>
+<td>loginTest(com.cts.repository.AuthRepositoryTest)</td></tr>
+<tr>
+<td title='com.cts.service.AuthServiceTest.loginTest()'><b>loginTest</b><br>Test class: com.cts.service.AuthServiceTest</td>
+<td></td>
+<td>0</td>
+<td>loginTest(com.cts.service.AuthServiceTest)</td></tr>
+<tr>
+<td title='com.cts.repository.AuthRepositoryTest.loginTestFailure()'><b>loginTestFailure</b><br>Test class: com.cts.repository.AuthRepositoryTest</td>
+<td></td>
+<td>0</td>
+<td>loginTestFailure(com.cts.repository.AuthRepositoryTest)</td></tr>
+<tr>
+<td title='com.cts.exception.CustomExceptionHandlerTest.methodArgumentNotValidTest()'><b>methodArgumentNotValidTest</b><br>Test class: com.cts.exception.CustomExceptionHandlerTest</td>
+<td></td>
+<td>0</td>
+<td>methodArgumentNotValidTest(com.cts.exception.CustomExceptionHandlerTest)</td></tr>
+<tr>
+<td title='com.cts.util.RWExcelFileAuthTest.readExcelTest()'><b>readExcelTest</b><br>Test class: com.cts.util.RWExcelFileAuthTest</td>
+<td></td>
+<td>2</td>
+<td>readExcelTest(com.cts.util.RWExcelFileAuthTest)</td></tr>
+<tr>
+<td title='com.cts.util.RWExcelFileTest.readExcelTest()'><b>readExcelTest</b><br>Test class: com.cts.util.RWExcelFileTest</td>
+<td></td>
+<td>0</td>
+<td>readExcelTest(com.cts.util.RWExcelFileTest)</td></tr>
+<tr>
+<td title='com.cts.util.RWExcelFileAuthTest.readExcelTestElse()'><b>readExcelTestElse</b><br>Test class: com.cts.util.RWExcelFileAuthTest</td>
+<td></td>
+<td>2</td>
+<td>readExcelTestElse(com.cts.util.RWExcelFileAuthTest)</td></tr>
+<tr>
+<td title='com.cts.util.RWExcelFileAuthTest.readExcelTestException()'><b>readExcelTestException</b><br>Test class: com.cts.util.RWExcelFileAuthTest</td>
+<td></td>
+<td>2</td>
+<td>readExcelTestException(com.cts.util.RWExcelFileAuthTest)</td></tr>
+<tr>
+<td title='com.cts.exception.InternalServerErrorTest.test()'><b>test</b><br>Test class: com.cts.exception.InternalServerErrorTest</td>
+<td></td>
+<td>0</td>
+<td>test(com.cts.exception.InternalServerErrorTest)</td></tr>
+<tr>
+<td title='com.cts.exception.RecordNotFoundExceptionTest.test()'><b>test</b><br>Test class: com.cts.exception.RecordNotFoundExceptionTest</td>
+<td></td>
+<td>0</td>
+<td>test(com.cts.exception.RecordNotFoundExceptionTest)</td></tr>
+<tr>
+<td title='com.cts.controller.StudentControllerTest.testCreateStudentSuccess()'><b>testCreateStudentSuccess</b><br>Test class: com.cts.controller.StudentControllerTest</td>
+<td></td>
+<td>2</td>
+<td>testCreateStudentSuccess(com.cts.controller.StudentControllerTest)</td></tr>
+<tr>
+<td title='com.cts.util.RWExcelFileAuthTest.writeExcel()'><b>writeExcel</b><br>Test class: com.cts.util.RWExcelFileAuthTest</td>
+<td></td>
+<td>2</td>
+<td>writeExcel(com.cts.util.RWExcelFileAuthTest)</td></tr>
+<tr>
+<td title='com.cts.util.RWExcelFileAuthTest.writeExcelException()'><b>writeExcelException</b><br>Test class: com.cts.util.RWExcelFileAuthTest</td>
+<td></td>
+<td>2</td>
+<td>writeExcelException(com.cts.util.RWExcelFileAuthTest)</td></tr>
+<tr>
+<td title='com.cts.util.RWExcelFileTest.writeExcelTest()'><b>writeExcelTest</b><br>Test class: com.cts.util.RWExcelFileTest</td>
+<td></td>
+<td>0</td>
+<td>writeExcelTest(com.cts.util.RWExcelFileTest)</td></tr>
+</table><p>
+</body>
+</html>

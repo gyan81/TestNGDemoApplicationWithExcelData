@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RWExcelStudent.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">TestNGDemoApplicationWithExcelData</a> &gt; <a href="index.source.html" class="el_package">com.cts.util</a> &gt; <span class="el_source">RWExcelStudent.java</span></div><h1>RWExcelStudent.java</h1><pre class="source lang-java linenums">package com.cts.util;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.stereotype.Component;
+
+import com.cts.model.Student;
+
+@Component
+<span class="fc" id="L25">public class RWExcelStudent {</span>
+	
+<span class="fc" id="L27">	private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);</span>
+
+	/**
+	 * This method is used for reading the excel value.
+	 * 
+	 * @return
+	 */
+	public List&lt;Student&gt; readExcel(String inputFilePath) {
+<span class="nc" id="L35">		ArrayList&lt;Student&gt; studentList = null;</span>
+<span class="nc" id="L36">		Workbook workbook = null;</span>
+		try {
+<span class="nc" id="L38">			workbook = new XSSFWorkbook(Files.newInputStream(Paths.get(inputFilePath)));</span>
+<span class="nc" id="L39">			Sheet sheet = workbook.getSheetAt(0);</span>
+<span class="nc" id="L40">			studentList = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L41" title="All 2 branches missed.">			for (int i = sheet.getFirstRowNum(); i &lt;= sheet.getLastRowNum(); i++) {</span>
+<span class="nc" id="L42">				Student student = new Student();</span>
+<span class="nc" id="L43">				Row ro = sheet.getRow(i);</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">				for (int j = ro.getFirstCellNum(); j &lt;= ro.getLastCellNum(); j++) {</span>
+<span class="nc" id="L45">					Cell ce = ro.getCell(j);</span>
+<span class="nc bnc" id="L46" title="All 2 branches missed.">					if (j == 0) {</span>
+<span class="nc" id="L47">						int id = (int) ce.getNumericCellValue();</span>
+<span class="nc" id="L48">						student.setId(id);</span>
+<span class="nc bnc" id="L49" title="All 2 branches missed.">					} else if (j == 1) {</span>
+<span class="nc" id="L50">						student.setName(ce.getStringCellValue());</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">					} else if (j == 2) {</span>
+<span class="nc" id="L52">						student.setGrade(ce.getStringCellValue());</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">					} else if (j == 3) {</span>
+<span class="nc" id="L54">						int age = (int) ce.getNumericCellValue();</span>
+<span class="nc" id="L55">						student.setAge(age);</span>
+					}
+				}
+<span class="nc" id="L58">				studentList.add(student);</span>
+			}
+<span class="nc" id="L60">			workbook.close();</span>
+<span class="nc" id="L61">		} catch (Exception e) {</span>
+<span class="nc" id="L62">			e.printStackTrace();</span>
+<span class="nc" id="L63">		}</span>
+<span class="nc" id="L64">		return studentList;</span>
+	}
+
+
+	public Student writeExcel(Student student, String filePath) {
+<span class="nc" id="L69">		System.out.println(&quot;Under RWExcelStudent file ... writeExcel method ..... &quot;);</span>
+		//Set data = new HashSet();
+
+		try {
+<span class="nc" id="L73">			Workbook workbook = new XSSFWorkbook(Files.newInputStream(Paths.get(filePath)));</span>
+<span class="nc" id="L74">			Sheet sheet = workbook.getSheetAt(0);</span>
+<span class="nc" id="L75">			int rownum = sheet.getLastRowNum();</span>
+<span class="nc" id="L76">			int cellnum = 0;</span>
+<span class="nc" id="L77">			Row row = sheet.createRow(++rownum);</span>
+<span class="nc" id="L78">			Cell cell = row.createCell(cellnum++);</span>
+<span class="nc" id="L79">			cell.setCellValue(student.getId());</span>
+
+<span class="nc" id="L81">			Cell cell2 = row.createCell(cellnum++);</span>
+<span class="nc" id="L82">			cell2.setCellValue(student.getName());</span>
+
+<span class="nc" id="L84">			Cell cell3 = row.createCell(cellnum++);</span>
+<span class="nc" id="L85">			cell3.setCellValue(student.getGrade());</span>
+
+<span class="nc" id="L87">			Cell cell4 = row.createCell(cellnum++);</span>
+<span class="nc" id="L88">			cell4.setCellValue(student.getAge());</span>
+			
+<span class="nc" id="L90">			workbook.write(Files.newOutputStream(Paths.get(filePath)));</span>
+<span class="nc" id="L91">			workbook.close();			</span>
+<span class="nc" id="L92">			return student;</span>
+<span class="nc" id="L93">		} catch (Exception e) {</span>
+<span class="nc" id="L94">			LOGGER.log(Level.INFO, e.getMessage());</span>
+<span class="nc" id="L95">			return null;</span>
+		}
+	}
+
+	/**
+	 * This method is used for canceling the order.
+	 * 
+	 * @param orderId
+	 * @return
+	 */
+	/*public String cancelOrder(String orderId, String filePath) {
+		int removeRowIndex = 0;
+		String cancelledOrderId = null;
+		try {
+			Workbook workbook = new XSSFWorkbook(Files.newInputStream(Paths.get(filePath)));
+			Sheet sheet = workbook.getSheetAt(0);
+			Iterator&lt;Row&gt; iterator = sheet.iterator();
+			while (iterator.hasNext()) {
+				Row currentRow = iterator.next();
+				Iterator&lt;Cell&gt; cellIterator = currentRow.iterator();
+				while (cellIterator.hasNext()) {
+					Cell currentCell = cellIterator.next();
+					int columnIndex = currentCell.getColumnIndex();
+					int rowIndex = currentCell.getRowIndex();
+					if (rowIndex &gt;= 0) {
+						if (columnIndex == 0 &amp;&amp; currentCell.getStringCellValue().equalsIgnoreCase(orderId)) {
+							removeRowIndex = rowIndex;
+							cancelledOrderId = orderId;
+						}
+					}
+				}
+			}
+			removeOrder(sheet, removeRowIndex);
+			workbook.write(Files.newOutputStream(Paths.get(filePath)));
+			workbook.close();
+		} catch (IOException e) {
+			LOGGER.log(Level.INFO, e.getMessage());
+		}
+		return cancelledOrderId;
+	}*/
+
+	/**
+	 * This method is used for removing an order.
+	 *
+	 * @param sheet
+	 * @param rowIndex
+	 */
+	private void removeOrder(Sheet sheet, int rowIndex) {
+<span class="nc" id="L143">		int lastRowNum = sheet.getLastRowNum();</span>
+<span class="nc bnc" id="L144" title="All 4 branches missed.">		if (rowIndex &gt;= 0 &amp;&amp; rowIndex &lt; lastRowNum) {</span>
+<span class="nc" id="L145">			sheet.shiftRows(rowIndex + 1, lastRowNum, -1);</span>
+		}
+<span class="nc bnc" id="L147" title="All 2 branches missed.">		if (rowIndex == lastRowNum) {</span>
+<span class="nc" id="L148">			Row removingRow = sheet.getRow(rowIndex);</span>
+<span class="nc bnc" id="L149" title="All 2 branches missed.">			if (removingRow != null) {</span>
+<span class="nc" id="L150">				sheet.removeRow(removingRow);</span>
+			}
+		}
+<span class="nc" id="L153">	}</span>
+
+	/**
+	 * This method is used for getting an order.
+	 * 
+	 * @param orderId
+	 * @return
+	 */
+	public Student getStudentById(int id, String filePath) {
+<span class="nc" id="L162">		List&lt;Student&gt; students = readExcel(filePath);</span>
+<span class="nc" id="L163">		Student student = null;</span>
+<span class="nc bnc" id="L164" title="All 2 branches missed.">		for (Student st : students) {</span>
+<span class="nc bnc" id="L165" title="All 2 branches missed.">			if (st.getId()==id) {</span>
+<span class="nc" id="L166">				student = st;</span>
+			}
+<span class="nc" id="L168">		}</span>
+<span class="nc" id="L169">		return student;</span>
+	}
+	
+	public List&lt;Student&gt; getStudentByGrade(String grade,String filePath){
+<span class="nc" id="L173">		List&lt;Student&gt; students = readExcel(filePath);</span>
+<span class="nc" id="L174">		List&lt;Student&gt; studentsByGradeList = new LinkedList&lt;&gt;();</span>
+<span class="nc bnc" id="L175" title="All 2 branches missed.">		for(Student st : students) {</span>
+<span class="nc bnc" id="L176" title="All 2 branches missed.">			if(st.getGrade().equalsIgnoreCase(grade)) {</span>
+<span class="nc" id="L177">				studentsByGradeList.add(st);</span>
+			}
+<span class="nc" id="L179">		}</span>
+<span class="nc" id="L180">		return studentsByGradeList;</span>
+	}
+
+	/**
+	 * This method is used for placing an order.
+	 * 
+	 * @param placeOrder
+	 * @return
+	 */
+	public String writeStudentExcel(Student createStudent, String filePath) {
+		try {
+<span class="nc" id="L191">			Workbook workbook = new XSSFWorkbook(Files.newInputStream(Paths.get(filePath)));</span>
+<span class="nc" id="L192">			Sheet sheet = workbook.getSheetAt(0);</span>
+<span class="nc" id="L193">			int rownum = sheet.getLastRowNum();</span>
+<span class="nc" id="L194">			int cellnum = 0;</span>
+<span class="nc" id="L195">			Row row = sheet.createRow(rownum++);</span>
+<span class="nc" id="L196">			Cell cell = row.createCell(cellnum++);</span>
+<span class="nc" id="L197">			cell.setCellValue(createStudent.getId());</span>
+<span class="nc" id="L198">			Cell cell2 = row.createCell(cellnum++);</span>
+<span class="nc" id="L199">			cell2.setCellValue(createStudent.getName());</span>
+<span class="nc" id="L200">			Cell cell3 = row.createCell(cellnum++);</span>
+<span class="nc" id="L201">			cell3.setCellValue(createStudent.getGrade());</span>
+<span class="nc" id="L202">			Cell cell4 = row.createCell(cellnum++);</span>
+<span class="nc" id="L203">			cell4.setCellValue(createStudent.getAge());</span>
+<span class="nc" id="L204">			workbook.write(Files.newOutputStream((Paths.get(filePath))));</span>
+<span class="nc" id="L205">			workbook.close();</span>
+<span class="nc" id="L206">			return &quot;Student has been creadted Successfully.&quot;;</span>
+					
+<span class="nc" id="L208">		} catch (Exception e) {</span>
+<span class="nc" id="L209">			LOGGER.log(Level.WARNING, &quot;Internal Server Error&quot;);</span>
+<span class="nc" id="L210">			return &quot;NoSuchFileException&quot;;</span>
+		}
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

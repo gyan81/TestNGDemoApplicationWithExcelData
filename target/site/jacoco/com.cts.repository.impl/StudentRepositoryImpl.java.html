@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>StudentRepositoryImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">TestNGDemoApplicationWithExcelData</a> &gt; <a href="index.source.html" class="el_package">com.cts.repository.impl</a> &gt; <span class="el_source">StudentRepositoryImpl.java</span></div><h1>StudentRepositoryImpl.java</h1><pre class="source lang-java linenums">package com.cts.repository.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.cts.model.Student;
+import com.cts.repository.iface.IStudentRepository;
+import com.cts.util.RWExcelStudent;
+
+
+@Repository(&quot;studentRepository&quot;)
+<span class="fc" id="L14">public class StudentRepositoryImpl implements IStudentRepository {</span>
+	
+	@Autowired
+	private RWExcelStudent rWExcelStudent;
+	
+	@Override
+	public Student createStudent(Student student) {
+<span class="nc" id="L21">		System.out.println(&quot;Under StudentRepositoryImpl ...........&quot;);</span>
+<span class="nc" id="L22">		return rWExcelStudent.writeExcel(student, &quot;./src/main/resources/excel/students.xlsx&quot;);</span>
+	}
+
+	@Override
+	public Student updateStudent(Student student) {
+		// TODO Auto-generated method stub
+<span class="nc" id="L28">		return null;</span>
+	}
+
+	@Override
+	public List&lt;Student&gt; searchStudentByAge(int age) {
+		// TODO Auto-generated method stub
+<span class="nc" id="L34">		return null;</span>
+	}
+
+	@Override
+	public List&lt;Student&gt; searchStudentByGrade(String grade) {
+<span class="nc" id="L39">		return rWExcelStudent.getStudentByGrade(grade, &quot;./src/main/resources/excel/students.xlsx&quot;);</span>
+	}
+
+	@Override
+	public Student searchStudentById(int id) {
+<span class="nc" id="L44">		return rWExcelStudent.getStudentById(id, &quot;./src/main/resources/excel/students.xlsx&quot;);</span>
+	}
+
+	@Override
+	public List&lt;Student&gt; searchStudentByAgeAndGrade(int age, String grade) {
+		// TODO Auto-generated method stub
+<span class="nc" id="L50">		return null;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

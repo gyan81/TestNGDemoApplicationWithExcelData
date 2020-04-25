@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AuthController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">TestNGDemoApplicationWithExcelData</a> &gt; <a href="index.source.html" class="el_package">com.cts.controller</a> &gt; <span class="el_source">AuthController.java</span></div><h1>AuthController.java</h1><pre class="source lang-java linenums">/**
+ * This class is used to validate the authenticated user.
+ * 
+ * @author 764432
+ *
+ */
+package com.cts.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.cts.model.User;
+import com.cts.service.iface.IAuthService;
+import com.cts.service.impl.AuthServiceImpl;
+
+@RestController
+@RequestMapping(&quot;/auth&quot;)
+public class AuthController {
+
+	@Autowired
+	private IAuthService authService;
+
+	/**
+	 * This constructor is used to initialize the AuthService variable.
+	 * 
+	 * @param authService
+	 */
+	public AuthController(final AuthServiceImpl authService) {
+<span class="fc" id="L32">		super();</span>
+<span class="fc" id="L33">		this.authService = authService;</span>
+<span class="fc" id="L34">	}</span>
+
+	/**
+	 * This method is used for return the authenticated user Id.
+	 * 
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping(value = &quot;/login&quot;, method = RequestMethod.POST)
+	public String login(@RequestBody final User user) {
+
+		/*
+		 * if(authService.login(user).equals(&quot;User Looged in sucessfully&quot;)){
+		 * return new ResponseEntity(user + authService.login(user)+
+		 * &quot; with user Id: &quot;+user.getUserId(), HttpStatus.OK); }else{ return new
+		 * ResponseEntity(user + authService.login(user)+ &quot; with user Id: &quot;
+		 * +user.getUserId(), HttpStatus.INTERNAL_SERVER_ERROR); }
+		 */
+<span class="fc" id="L52">		return authService.login(user) + &quot; with user Id:&quot; + user.getUserId();</span>
+	}
+
+	/**
+	 * This method is used for creating the user.
+	 * 
+	 * @param user
+	 * @return String
+	 */
+	@RequestMapping(value = &quot;/createuser&quot;, method = RequestMethod.POST)
+	public String createUser(@RequestBody final User user) {
+
+<span class="fc" id="L64">		return authService.createUser(user);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

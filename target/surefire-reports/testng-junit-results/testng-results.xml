@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="23" passed="23">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Surefire suite" duration-ms="19310" started-at="2020-04-23T14:06:40 IST" finished-at="2020-04-23T14:06:59 IST">
+    <groups>
+    </groups>
+    <test name="Surefire test" duration-ms="19310" started-at="2020-04-23T14:06:40 IST" finished-at="2020-04-23T14:06:59 IST">
+      <class name="com.cts.util.RWExcelFileTest">
+        <test-method status="PASS" signature="readExcelTest()" name="readExcelTest" duration-ms="140" started-at="2020-04-23T14:06:59 IST" finished-at="2020-04-23T14:06:59 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- readExcelTest -->
+        <test-method status="PASS" signature="writeExcelTest()" name="writeExcelTest" duration-ms="396" started-at="2020-04-23T14:06:59 IST" finished-at="2020-04-23T14:06:59 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- writeExcelTest -->
+      </class> <!-- com.cts.util.RWExcelFileTest -->
+      <class name="com.cts.exception.CustomExceptionHandlerTest">
+        <test-method status="PASS" signature="handleAllExceptionTest()" name="handleAllExceptionTest" duration-ms="755" started-at="2020-04-23T14:06:54 IST" finished-at="2020-04-23T14:06:55 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- handleAllExceptionTest -->
+        <test-method status="PASS" signature="handleInternalServerExceptionTest()" name="handleInternalServerExceptionTest" duration-ms="750" started-at="2020-04-23T14:06:54 IST" finished-at="2020-04-23T14:06:55 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- handleInternalServerExceptionTest -->
+        <test-method status="PASS" signature="methodArgumentNotValidTest()" name="methodArgumentNotValidTest" duration-ms="783" started-at="2020-04-23T14:06:54 IST" finished-at="2020-04-23T14:06:55 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- methodArgumentNotValidTest -->
+        <test-method status="PASS" signature="handleRecordNotFoundExceptionTest()" name="handleRecordNotFoundExceptionTest" duration-ms="769" started-at="2020-04-23T14:06:54 IST" finished-at="2020-04-23T14:06:55 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- handleRecordNotFoundExceptionTest -->
+      </class> <!-- com.cts.exception.CustomExceptionHandlerTest -->
+      <class name="com.cts.exception.ErrorResponseTest">
+        <test-method status="PASS" signature="errorResponsetest()" name="errorResponsetest" duration-ms="6" started-at="2020-04-23T14:06:55 IST" finished-at="2020-04-23T14:06:55 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- errorResponsetest -->
+      </class> <!-- com.cts.exception.ErrorResponseTest -->
+      <class name="com.cts.controller.AuthControllerTest">
+        <test-method status="PASS" signature="loginTest() throws java.lang.Exception" name="loginTest" duration-ms="9632" started-at="2020-04-23T14:06:41 IST" finished-at="2020-04-23T14:06:51 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginTest -->
+        <test-method status="PASS" signature="createUserTest() throws java.lang.Exception" name="createUserTest" duration-ms="9642" started-at="2020-04-23T14:06:41 IST" finished-at="2020-04-23T14:06:51 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createUserTest -->
+      </class> <!-- com.cts.controller.AuthControllerTest -->
+      <class name="com.cts.util.RWExcelFileAuthTest">
+        <test-method status="PASS" signature="readExcelTestElse()" name="readExcelTestElse" duration-ms="2248" started-at="2020-04-23T14:06:56 IST" finished-at="2020-04-23T14:06:59 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- readExcelTestElse -->
+        <test-method status="PASS" signature="writeExcel()" name="writeExcel" duration-ms="2143" started-at="2020-04-23T14:06:56 IST" finished-at="2020-04-23T14:06:59 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- writeExcel -->
+        <test-method status="PASS" signature="writeExcelException()" name="writeExcelException" duration-ms="2210" started-at="2020-04-23T14:06:56 IST" finished-at="2020-04-23T14:06:59 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- writeExcelException -->
+        <test-method status="PASS" signature="readExcelTest()" name="readExcelTest" duration-ms="2204" started-at="2020-04-23T14:06:56 IST" finished-at="2020-04-23T14:06:59 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- readExcelTest -->
+        <test-method status="PASS" signature="readExcelTestException()" name="readExcelTestException" duration-ms="2251" started-at="2020-04-23T14:06:56 IST" finished-at="2020-04-23T14:06:59 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- readExcelTestException -->
+      </class> <!-- com.cts.util.RWExcelFileAuthTest -->
+      <class name="com.cts.controller.StudentControllerTest">
+        <test-method status="PASS" signature="testCreateStudentSuccess() throws java.lang.Exception" name="testCreateStudentSuccess" duration-ms="2659" started-at="2020-04-23T14:06:51 IST" finished-at="2020-04-23T14:06:54 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testCreateStudentSuccess -->
+      </class> <!-- com.cts.controller.StudentControllerTest -->
+      <class name="com.cts.exception.InternalServerErrorTest">
+        <test-method status="PASS" signature="test()" name="test" duration-ms="9" started-at="2020-04-23T14:06:55 IST" finished-at="2020-04-23T14:06:55 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- test -->
+      </class> <!-- com.cts.exception.InternalServerErrorTest -->
+      <class name="com.cts.ShoppingcartApplicationTest">
+        <test-method status="PASS" signature="contextLoads()" name="contextLoads" duration-ms="1636" started-at="2020-04-23T14:06:55 IST" finished-at="2020-04-23T14:06:56 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- contextLoads -->
+      </class> <!-- com.cts.ShoppingcartApplicationTest -->
+      <class name="com.cts.repository.AuthRepositoryTest">
+        <test-method status="PASS" signature="loginTestFailure()" name="loginTestFailure" duration-ms="49" started-at="2020-04-23T14:06:55 IST" finished-at="2020-04-23T14:06:55 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginTestFailure -->
+        <test-method status="PASS" signature="loginTest()" name="loginTest" duration-ms="33" started-at="2020-04-23T14:06:55 IST" finished-at="2020-04-23T14:06:55 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginTest -->
+        <test-method status="PASS" signature="createUserTest()" name="createUserTest" duration-ms="39" started-at="2020-04-23T14:06:55 IST" finished-at="2020-04-23T14:06:55 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createUserTest -->
+      </class> <!-- com.cts.repository.AuthRepositoryTest -->
+      <class name="com.cts.service.AuthServiceTest">
+        <test-method status="PASS" signature="loginTest()" name="loginTest" duration-ms="33" started-at="2020-04-23T14:06:55 IST" finished-at="2020-04-23T14:06:55 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginTest -->
+        <test-method status="PASS" signature="createUserTest()" name="createUserTest" duration-ms="39" started-at="2020-04-23T14:06:55 IST" finished-at="2020-04-23T14:06:55 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createUserTest -->
+      </class> <!-- com.cts.service.AuthServiceTest -->
+      <class name="com.cts.exception.RecordNotFoundExceptionTest">
+        <test-method status="PASS" signature="test()" name="test" duration-ms="6" started-at="2020-04-23T14:06:55 IST" finished-at="2020-04-23T14:06:55 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- test -->
+      </class> <!-- com.cts.exception.RecordNotFoundExceptionTest -->
+    </test> <!-- Surefire test -->
+  </suite> <!-- Surefire suite -->
+</testng-results>

@@ -9,13 +9,12 @@ import com.cts.model.Student;
 import com.cts.repository.iface.IStudentRepository;
 import com.cts.service.iface.IStudentService;
 
-
 @Service("studentService")
-public class StudentServiceImpl implements IStudentService{
-	
+public class StudentServiceImpl implements IStudentService {
+
 	@Autowired
 	private IStudentRepository studentRepository;
-	
+
 	private static List<Student> students;
 
 	@Override
@@ -25,18 +24,8 @@ public class StudentServiceImpl implements IStudentService{
 
 	@Override
 	public Student updateStudent(Student student) {
-		Student resObj=studentRepository.updateStudent(student);
+		Student resObj = studentRepository.updateStudent(student);
 		return resObj;
-	}
-
-	@Override
-	public List<Student> searchStudentByAge(int age) {
-		return null;
-	}
-
-	@Override
-	public List<Student> searchStudentByGrade(String grade) {
-		return studentRepository.searchStudentByGrade(grade);
 	}
 
 	@Override
@@ -45,16 +34,8 @@ public class StudentServiceImpl implements IStudentService{
 	}
 
 	@Override
-	public List<Student> searchStudentByAgeAndGrade(int age, String grade) {
-		return null;
-	}
-
-	@Override
 	public int removeStudent(int id, String filePath) {
-		return studentRepository.removeStudent(id,filePath);
+		return studentRepository.removeStudent(id, filePath);
 	}
 
-	
-
-	
 }

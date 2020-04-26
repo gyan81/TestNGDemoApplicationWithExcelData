@@ -41,7 +41,7 @@ public class RWExcelStudentTest {
 		rWExcelStudent = new RWExcelStudent();
 		Student student = getDummyStudent();
 		int writeExcelResponse = rWExcelStudent.writeExcel(student, filePath).getId();
-		assertEquals("102", writeExcelResponse);
+		assertEquals(102, writeExcelResponse);
 	}
 	
 	@Test ( expected = NoSuchFileException.class)

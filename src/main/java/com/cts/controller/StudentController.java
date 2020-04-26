@@ -45,43 +45,32 @@ public class StudentController {
 		
 	}
 
-
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(value = "/update-student", method = RequestMethod.PUT, produces = "application/json")
-	public Student updateStudent(@RequestBody Student student) {
+	public ResponseEntity<Object> updateStudent(@RequestBody Student student) {
 		System.out.println("Inside updatestudent api ....");
 		Student updatedStudent = studentService.updateStudent(student);
-		return updatedStudent;
-	}
-	
-
-	//not implemented yet
-	@RequestMapping(value = "/get-student-by-age", method = RequestMethod.GET, produces = "application/json")
-	public List<Student> searchStudentByAge(@RequestParam int age) {
-		List<Student> students = studentService.searchStudentByAge(age);
-		return students;
+		if (updatedStudent == null) {			
+			return new ResponseEntity("Unable to update student", HttpStatus.INTERNAL_SERVER_ERROR);
+		}else {			
+			return new ResponseEntity("Student updated successfully.", HttpStatus.OK);
+		}
 	}
 
-	//not implemented yet
-	@RequestMapping(value = "/get-student-by-grade", method = RequestMethod.GET, produces = "application/json")
-	public List<Student> searchStudentByGrade(@RequestParam String grade) {
-		List<Student> students = studentService.searchStudentByGrade(grade);
-		return students;
-	}
-
-	//not implemented yet
-	@RequestMapping(value = "/get-student-by-age-and-grade", method = RequestMethod.GET, produces = "application/json")
-	public List<Student> searchStudentByAgeAndGrade(@RequestParam int age, String grade) {
-		List<Student> students = studentService.searchStudentByAgeAndGrade(age, grade);
-		return students;
-	}
-
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(value = "/get-student-by-id", method = RequestMethod.GET, produces = "application/json")
-	public Student searchStudentById(@RequestParam int id) {
+	public ResponseEntity<Object> searchStudentById(@RequestParam int id) {
 		Student student = studentService.searchStudentById(id);
-		return student;
+		
+		if (student ==null) {
+			return new ResponseEntity("Student not found in the system", HttpStatus.NOT_FOUND);
+		} else {
+			return new ResponseEntity(student, HttpStatus.OK);
+		}
 	}
 
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(value = "/students/{id}", method = RequestMethod.DELETE, produces = "application/json")
 	public ResponseEntity<Object> removeStudent(@PathVariable("id") final int id) {
 		System.out.println("Inside removeStudent method controller .... ");

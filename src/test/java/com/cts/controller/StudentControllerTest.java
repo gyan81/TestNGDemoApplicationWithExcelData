@@ -21,6 +21,8 @@ public class StudentControllerTest extends AbstractTest {
 	@Mock
 	private StudentServiceImpl studentService;
 	
+	private String filePath = "./src/main/resources/excel/students.xlsx";
+	
 	@Before
 	@Override
 	public void setUp() {
@@ -34,7 +36,32 @@ public class StudentControllerTest extends AbstractTest {
 		ResponseEntity<Object> response = studentController.createStudent(student);
 		assertEquals(HttpStatus.OK.value(), response.getStatusCodeValue());
 	}
-
+	
+	@Test
+	public void testsearchStudentById()  throws Exception {
+		Student student = getTestStudent();
+		
+		when(studentService.searchStudentById(102)).thenReturn(student);
+		ResponseEntity<Object> response = studentController.searchStudentById(102);
+		assertEquals(HttpStatus.OK.value(), response.getStatusCodeValue());
+	}
+	
+	@Test
+	public void testremoveStudent() {
+		Student student = getTestStudent();
+		when(studentService.removeStudent(student.getId(), filePath)).thenReturn(student.getId());
+		ResponseEntity<Object> response = studentController.removeStudent(102);
+		assertEquals(HttpStatus.OK.value(), response.getStatusCodeValue());
+	}
+	
+	@Test
+	public void testupdateStudent() throws Exception {
+		Student student = getTestStudent();
+		when(studentService.updateStudent(student)).thenReturn(student);
+		ResponseEntity<Object> response =  studentController.updateStudent(student);
+		assertEquals(HttpStatus.OK.value(), response.getStatusCodeValue());
+		
+	}
 	private Student getTestStudent() {
 		Student student = new Student();
 		student.setId(102);

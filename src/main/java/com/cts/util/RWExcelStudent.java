@@ -24,10 +24,9 @@ import com.cts.model.Student;
 
 @Component
 public class RWExcelStudent {
-	
+
 	private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
-	
 	public List<Student> readExcel(String inputFilePath) {
 		ArrayList<Student> studentList = null;
 		Workbook workbook = null;
@@ -61,10 +60,9 @@ public class RWExcelStudent {
 		return studentList;
 	}
 
-
 	public Student writeExcel(Student student, String filePath) {
 		System.out.println("Under RWExcelStudent file ... writeExcel method ..... ");
-		//Set data = new HashSet();
+		// Set data = new HashSet();
 
 		try {
 			Workbook workbook = new XSSFWorkbook(Files.newInputStream(Paths.get(filePath)));
@@ -83,16 +81,16 @@ public class RWExcelStudent {
 
 			Cell cell4 = row.createCell(cellnum++);
 			cell4.setCellValue(student.getAge());
-			
+
 			workbook.write(Files.newOutputStream(Paths.get(filePath)));
-			workbook.close();			
+			workbook.close();
 			return student;
 		} catch (Exception e) {
 			LOGGER.log(Level.INFO, e.getMessage());
 			return null;
 		}
 	}
-	
+
 	public Student updateExcel(Student student, String filePath) {
 		System.out.println("Under RWExcelStudent file ... updateExcel method ..... ");
 
@@ -102,18 +100,18 @@ public class RWExcelStudent {
 			int rownum = sheet.getLastRowNum();
 			Cell cell = null;
 			int passedId = student.getId();
-			
+
 			for (int i = sheet.getFirstRowNum(); i <= rownum; i++) {
 				Row ro = sheet.getRow(i);
 				cell = ro.getCell(0);
-				
+
 				int existingcellId = (int) cell.getNumericCellValue();
-				if(passedId==existingcellId) {
-					
+				if (passedId == existingcellId) {
+
 					for (int j = ro.getFirstCellNum(); j <= ro.getLastCellNum(); j++) {
-						
+
 						Cell ce = ro.getCell(j);
-						
+
 						if (j == 0) {
 							ce.setCellValue(passedId);
 						} else if (j == 1) {
@@ -121,15 +119,15 @@ public class RWExcelStudent {
 						} else if (j == 2) {
 							ce.setCellValue(student.getGrade());
 						} else if (j == 3) {
-							ce.setCellValue(student.getAge());							
+							ce.setCellValue(student.getAge());
 						}
 					}
-					
+
 				}
 			}
-			
+
 			workbook.write(Files.newOutputStream(Paths.get(filePath)));
-			workbook.close();			
+			workbook.close();
 			return student;
 		} catch (Exception e) {
 			LOGGER.log(Level.INFO, e.getMessage());
@@ -137,45 +135,28 @@ public class RWExcelStudent {
 		}
 	}
 
-
-	
-	private void removeOrder(Sheet sheet, int rowIndex) {
-		int lastRowNum = sheet.getLastRowNum();
-		if (rowIndex >= 0 && rowIndex < lastRowNum) {
-			sheet.shiftRows(rowIndex + 1, lastRowNum, -1);
-		}
-		if (rowIndex == lastRowNum) {
-			Row removingRow = sheet.getRow(rowIndex);
-			if (removingRow != null) {
-				sheet.removeRow(removingRow);
-			}
-		}
-	}
-
-	
 	public Student getStudentById(int id, String filePath) {
 		List<Student> students = readExcel(filePath);
 		Student student = null;
 		for (Student st : students) {
-			if (st.getId()==id) {
+			if (st.getId() == id) {
 				student = st;
 			}
 		}
 		return student;
 	}
-	
-	public List<Student> getStudentByGrade(String grade,String filePath){
+
+	public List<Student> getStudentByGrade(String grade, String filePath) {
 		List<Student> students = readExcel(filePath);
 		List<Student> studentsByGradeList = new LinkedList<>();
-		for(Student st : students) {
-			if(st.getGrade().equalsIgnoreCase(grade)) {
+		for (Student st : students) {
+			if (st.getGrade().equalsIgnoreCase(grade)) {
 				studentsByGradeList.add(st);
 			}
 		}
 		return studentsByGradeList;
 	}
 
-	
 	public String writeStudentExcel(Student createStudent, String filePath) {
 		try {
 			Workbook workbook = new XSSFWorkbook(Files.newInputStream(Paths.get(filePath)));
@@ -194,18 +175,17 @@ public class RWExcelStudent {
 			workbook.write(Files.newOutputStream((Paths.get(filePath))));
 			workbook.close();
 			return "Student has been creadted Successfully.";
-					
+
 		} catch (Exception e) {
 			LOGGER.log(Level.WARNING, "Internal Server Error");
 			return "NoSuchFileException";
 		}
 	}
-	
-	
+
 	@SuppressWarnings("resource")
 	public int removeStudentFromExcel(String inputFilePath, int id) {
-		System.out.println("id is : "+id);
-		int removedStudentId=0;
+		System.out.println("id is : " + id);
+		int removedStudentId = 0;
 		int removedRowIndex = 0;
 		try {
 			Workbook workbook = new XSSFWorkbook(Files.newInputStream(Paths.get(inputFilePath)));
@@ -224,10 +204,11 @@ public class RWExcelStudent {
 					int columnIndex = currentCell.getColumnIndex();
 					int rowIndex = currentCell.getRowIndex();
 					if (rowIndex >= 0) {
-						System.out.println("rowIndex :" +rowIndex +"columnIndex :"+columnIndex);
-						//System.out.println("current cell value :"+(int)currentCell.getNumericCellValue());
-						if (columnIndex == 0 && (int) currentCell.getNumericCellValue()==id) {
-							System.out.println("removedStudentId : "+removedStudentId + "Id : " + id);
+						System.out.println("rowIndex :" + rowIndex + "columnIndex :" + columnIndex);
+						// System.out.println("current cell value
+						// :"+(int)currentCell.getNumericCellValue());
+						if (columnIndex == 0 && (int) currentCell.getNumericCellValue() == id) {
+							System.out.println("removedStudentId : " + removedStudentId + "Id : " + id);
 							removedRowIndex = rowIndex;
 							removedStudentId = id;
 						}
@@ -241,7 +222,6 @@ public class RWExcelStudent {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			//removedStudentId = "NoSuchFileException";
 		}
 		return removedStudentId;
 	}
